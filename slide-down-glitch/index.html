@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Slide-down Menu Test</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        font-family: sans-serif;
+      }
+
+      .nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 2rem;
+        background: #f2f2f2;
+        position: relative;
+      }
+
+      .hamburger {
+        display: none;
+        padding: 0.5rem 1rem;
+        font-size: 1rem;
+        cursor: pointer;
+      }
+
+      /* Hide menu by default on mobile */
+      .menu {
+        display: flex;
+        gap: 2rem;
+      }
+
+      @media (max-width: 768px) {
+        .hamburger {
+          display: block;
+        }
+
+        .menu {
+          display: none; /* hidden by default on mobile */
+          flex-direction: column;
+          position: absolute;
+          top: 64px;
+          left: 0;
+          width: 100%;
+          background: #fff;
+          transform: translateY(-150%);
+          transition: transform 0.3s ease, opacity 0.3s ease;
+          z-index: 10;
+          opacity: 0;
+          pointer-events: none;
+        }
+
+        .menu.open {
+          display: flex;
+          transform: translateY(0);
+          opacity: 1;
+          pointer-events: auto;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="nav">
+      <button class="hamburger" id="menuBtn">Menu</button>
+      <ul class="menu" id="menu">
+        <li>Home</li>
+        <li>About</li>
+        <li>Contact</li>
+      </ul>
+    </nav>
+
+    <script>
+      const menuBtn = document.getElementById('menuBtn');
+      const menu = document.getElementById('menu');
+
+      menuBtn.addEventListener('click', () => {
+        menu.classList.toggle('open');
+      });
+    </script>
+  </body>
+</html>
